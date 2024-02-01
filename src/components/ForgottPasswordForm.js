@@ -4,8 +4,6 @@ import axios from 'axios';
 const ForgottPasswordForm = () => {
   const [formData, setFormData] = useState({
     email: '',
-   
-  
   });
 
   const [error, setError] = useState(null);
@@ -16,9 +14,13 @@ const ForgottPasswordForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+    var myEmail= formData.email;
+    const encodedEmail = encodeURIComponent(myEmail);
+    console.log(encodedEmail);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://localhost:7267/api/User/forgot-password', formData)
+    axios.post(`https://localhost:7267/api/User/forgot-password?email=${encodedEmail}`, formData)
     .then(response => {
       console.log(response.data);
     
