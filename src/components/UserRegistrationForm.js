@@ -36,15 +36,16 @@ const UserRegistrationForm = () => {
   if (registered) {
     return (
       <div className="max-w-md mx-auto mt-8">
-        <p className="text-green-500"> Please Register:</p>
+        <p className="text-green-500"> Registration successful! Please login</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-md mx-auto mt-8">
+    <div className="flex justify-center h-screen">
+    <div className="mx-auto mt-12 mb-12">
       <div>
-      <h1 className="text-6xl font-semibold text-black-500 mx-36 mb-8">Please Register:</h1>
+      <h1 className="text-5xl font-semibold text-black-500 mx-36 mb-4">Please Register</h1>
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
@@ -61,6 +62,7 @@ const UserRegistrationForm = () => {
             id="firstName"
             name="firstName"
             value={formData.firstName}
+            placeholder='Enter you are First Name'
             onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             required
@@ -75,6 +77,7 @@ const UserRegistrationForm = () => {
             id="lastName"
             name="lastName"
             value={formData.lastName}
+            placeholder='Enter you are Last Name'
             onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             required
@@ -89,6 +92,7 @@ const UserRegistrationForm = () => {
             id="email"
             name="email"
             value={formData.email}
+            placeholder='Enter you are Email'
             onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             required
@@ -103,6 +107,7 @@ const UserRegistrationForm = () => {
             id="userName"
             name="userName"
             value={formData.userName}
+            placeholder='Enter you are Username'
             onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             required
@@ -117,6 +122,7 @@ const UserRegistrationForm = () => {
             id="password"
             name="password"
             value={formData.password}
+            placeholder='Enter you are Password'
             onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             required
@@ -131,6 +137,7 @@ const UserRegistrationForm = () => {
             id="confirmPassword"
             name="confirmPassword"
             value={formData.confirmPassword}
+            placeholder='Enter confirm Password'
             onChange={handleChange}
             className="mt-1 p-2 border border-gray-300 rounded-md w-full"
             required
@@ -145,6 +152,7 @@ const UserRegistrationForm = () => {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 };
