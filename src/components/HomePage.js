@@ -1,7 +1,7 @@
 import React from 'react';
 
-
-const LoginResponse = () => {
+const HomePage = () => {
+  // Checkouljuk h loginolva van vagy nem
 
   return (
     <div>
@@ -12,5 +12,4 @@ const LoginResponse = () => {
   );
 };
 
-export default LoginResponse;
-  
+export default HomePage;

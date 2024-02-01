@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import UserRegistrationForm from './components/UserRegistrationForm';
+import RegisterPage from './components/RegisterPage';
 import UserLoginForm from './components/UserLoginForm';
 import ForgottPasswordForm from './components/ForgottPasswordForm';
 import Navbar from './components/Navbar';
@@ -7,7 +7,7 @@ import ResetPasswordForm from './components/ResetPasswordForm'
 import PrivateRoute from './components/PrivateRoute';
 import { useState } from 'react';
 import Dashboard from './components/Dashboard';
-import LoginResponse from './components/LoginResponse';
+import HomePage from './components/HomePage';
 import VerifyEmail from './components/VerifyEmail';
 
 function App() {
@@ -19,11 +19,11 @@ function App() {
         <Navbar/>
     </div>
       <Routes>
-        <Route path="/register" element={<UserRegistrationForm />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<UserLoginForm />} />
         <Route path="/forgott-password" element={<ForgottPasswordForm />} />
         <Route path='/reset-password' element={<ResetPasswordForm/>}/>
-        <Route path="/" element={<LoginResponse />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/verify" element={<VerifyEmail/>} />
       </Routes>
      

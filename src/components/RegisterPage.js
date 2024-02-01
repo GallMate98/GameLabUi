@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const UserRegistrationForm = () => {
+const RegisterPage = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -25,32 +25,32 @@ const UserRegistrationForm = () => {
     axios.post('https://localhost:7267/api/User/register', formData)
     .then(response => {
       console.log(response.data);
-      // Sikeres regisztráció kezelése
+      setRegistered(true);
+
     })
     .catch(error => {
       console.error('Hiba a regisztráció során:', error);
+      setError(error);
       // Regisztrációs hiba kezelése
     });
   };
 
-  if (registered) {
-    return (
-      <div className="max-w-md mx-auto mt-8">
-        <p className="text-green-500"> Registration successful! Please login</p>
-      </div>
-    );
-  }
-
   return (
     <div className="flex justify-center h-screen">
-    <div className="mx-auto mt-12 mb-12">
-      <div>
-      <h1 className="text-5xl font-semibold text-black-500 mx-36 mb-4">Please Register</h1>
-      </div>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="mx-auto mt-12 mb-12">
+       
+
+        {registered ? (
+        <div className="max-w-md mx-auto mt-8">
+          <h1 className="text-green-500 text-xl"> Registration successful! <br/> Verify you are email!</h1>
+        </div>
+    ) : ( 
+          <div>
+            <h1 className="text-5xl font-semibold text-black-500 mx-36 mb-4">Please Register</h1>
+            <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
             <div className="text-red-500">
-              Hiba a regisztráció során: {error.message}
+              An error occured on registration: <br/> {error.response.data}
             </div>
           )}
       <div>
@@ -150,11 +150,14 @@ const UserRegistrationForm = () => {
           >
             Register
           </button>
-        </div>
-      </form>
+      </div>
+    </form>
+    </div>
+    )}
+       
     </div>
     </div>
   );
 };
 
-export default UserRegistrationForm;
+export default RegisterPage;

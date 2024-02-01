@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
-
-import LoginResponse from './LoginResponse';
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 
@@ -61,7 +59,6 @@ const UserLoginForm = ({ setToken }) => {
         <div>
           <h1 className="text-6xl font-semibold text-black-500 mx-36 mb-8">Login:</h1>
         </div>
-        {message && <LoginResponse message={message} />}
         <form onSubmit={handleSubmit} className="space-y-5 ">
           {error && (
             <div className="text-red-500">

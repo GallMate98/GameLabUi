@@ -1,44 +1,51 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 
 const VerifyEmail = () => {
-  const [verificationStatus, setVerificationStatus] = useState(null);
+  const [message, setMessage] = useState("Loading");
+
+  const isMounted = useRef(false);
 
   useEffect(() => {
-    // Function to extract the token from the URL
-    const getTokenFromUrl = () => {
-      const searchParams = new URLSearchParams(window.location.search);
-      return searchParams.get('token');
-    };
+    if (!isMounted.current) {
+      const fetchData = async () => {
+        try {
+          const searchParams = new URLSearchParams(window.location.search);
+          const token = searchParams.get('token');
 
-    // Fetching data from the API
-    const verifyToken = async (token) => {
-      try {
-        const response = await fetch(`https://localhost:7267/api/User/verify?token=${token}`);
-        const data = await response.json();
-        setVerificationStatus(data.message);
-      } catch (error) {
-        console.error('Error verifying token:', error);
-        setVerificationStatus('Error verifying token');
-      }
-    };
+          if (!token) {
+            setMessage('Token is missing.');
+            return;
+          }
 
-    // Getting the token from the URL and verifying
-    const token = getTokenFromUrl();
-    if (token) {
-      verifyToken(token);
-    } else {
-      setVerificationStatus('Token not found in the URL');
+          const encodedToken = encodeURIComponent(token);
+
+          const response = await axios.get(`https://localhost:7267/api/User/verify?token=${encodedToken}`);
+          const data = response.data;
+
+          setMessage(data.message);
+        } catch (error) {
+
+          if (error.response && error.response.data && error.response.data.message) {
+            setMessage(error.response.data.message);
+          } else {
+            setMessage('An Error Occured');
+          }
+        }
+      };
+
+      fetchData();
+
+      isMounted.current = true;
     }
-  }, [verificationStatus]); // Módosítás: a verificationStatus hozzáadása a függőségekhez
+  }, []);
 
   return (
     <div>
-      <h1>Verification Status</h1>
-      {verificationStatus !== null ? (
-        <p>{verificationStatus}</p>
-      ) : (
-        <p>Verifying...</p>
-      )}
+      <h1>Message</h1>
+      {message ? (
+        <p>{message}</p>
+      ) : null}
     </div>
   );
 };

@@ -5,13 +5,11 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
 
-  // Bejelentkezés után állítsuk be az isLoggedIn és a felhasználó nevét
   const handleLogin = (username) => {
     setIsLoggedIn(true);
     setUsername(username);
   };
-
-  // Kijelentkezés után állítsuk vissza az állapotokat
+  
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUsername('');

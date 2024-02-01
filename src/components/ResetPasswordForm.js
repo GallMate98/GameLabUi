@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Routes } from 'react-router-dom';
-import LoginResponse from './LoginResponse'; 
+//import LoginResponse from './LoginResponse'; 
 import { Route } from 'react-router-dom';
 
 const UserLoginForm = () => {
@@ -98,10 +98,6 @@ const UserLoginForm = () => {
           </div>
         </form>
       </div>
-      <Routes>
-      <Route path="/register" element={<LoginResponse  message={message} />}/>
-      </Routes>
-     
     </div>
   );
 };
