@@ -7,6 +7,8 @@ const ForgottPasswordForm = () => {
   });
 
   const [error, setError] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [ message , setMessage] = useState('');
 
 
   const handleChange = (e) => {
@@ -23,54 +25,70 @@ const ForgottPasswordForm = () => {
     axios.post(`https://localhost:7267/api/User/forgot-password?email=${encodedEmail}`, formData)
     .then(response => {
       console.log(response.data);
+      setMessage(response.data);
+      setSubmitted(true);
+
     
     })
     .catch(error => {
-      console.error('Hiba a regisztráció során:', error);
+      console.error('Error', error);
+      setError(error);
 
     });
   };
 
   return ( 
-  <div className="flex justify-center h-screen">
-    <div className=" mx-auto mt-12 mb-12">
+    <div>
+    {submitted ?(
         <div>
-            <h1 className="text-4xl font-semibold text-black-500 mx-36 mb-8">Add email for reset your password</h1>
-        </div>
-      <form onSubmit={handleSubmit} className="space-y-5 ">
-          {error && (
-            <div className="text-red-500">
-              Hiba a regisztráció során: {error.message}
+            <h1>Message</h1>
+            {message ? (
+            <p>{message}</p>
+              ) : null}
+      </div>
+      ):(
+        <div className="flex justify-center h-screen">
+        <div className=" mx-auto mt-12 mb-12">
+            <div>
+                <h1 className="text-4xl font-semibold text-black-500 mx-36 mb-8">Add email for reset your password</h1>
             </div>
-          )}
-        <div>  
-        <div>
-          <label htmlFor="email" className="  block  text-base font-medium text-gray-700 mb-2">
-            Email Address
-          </label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={formData.email}
-            placeholder="Enter your email"
-            onChange={handleChange}
-            className=" mt-1 p-2 border border-gray-300 rounded-md w-full mb-5"
-            required
-          />
+          <form onSubmit={handleSubmit} className="space-y-5 ">
+              {error && (
+                <div className="text-red-500">
+                  Hiba a regisztráció során: {error.message}
+                </div>
+              )}
+            <div>  
+            <div>
+              <label htmlFor="email" className="  block  text-base font-medium text-gray-700 mb-2">
+                Email Address
+              </label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                value={formData.email}
+                placeholder="Enter your email"
+                onChange={handleChange}
+                className=" mt-1 p-2 border border-gray-300 rounded-md w-full mb-5"
+                required
+              />
+            </div>
+           </div>
+            <div>
+              <button
+                type="submit"
+                className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Send
+              </button>
+            </div>
+          </form>
         </div>
-       </div>
-        <div>
-          <button
-            type="submit"
-            className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Send
-          </button>
         </div>
-      </form>
-    </div>
-    </div>
+      )
+    }
+</div>
   );
 };
 

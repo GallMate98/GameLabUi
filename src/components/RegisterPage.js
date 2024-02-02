@@ -36,16 +36,14 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="flex justify-center h-screen">
-      <div className="mx-auto mt-12 mb-12">
-       
-
+    <div>
         {registered ? (
-        <div className="max-w-md mx-auto mt-8">
-          <h1 className="text-green-500 text-xl"> Registration successful! <br/> Verify you are email!</h1>
-        </div>
-    ) : ( 
-          <div>
+        <div className="max-w-md mx-auto mt-8 ">
+        <h1 className="text-xl text-black font-bold">Registration successful! <br/> Verify your email!</h1>
+      </div>
+    ) : (
+      <div className="flex justify-center h-screen">
+          <div className="mx-auto mt-12 mb-12">
             <h1 className="text-5xl font-semibold text-black-500 mx-36 mb-4">Please Register</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
@@ -153,9 +151,9 @@ const RegisterPage = () => {
       </div>
     </form>
     </div>
+    </div>
     )}
        
-    </div>
     </div>
   );
 };

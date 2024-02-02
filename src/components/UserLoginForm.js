@@ -13,6 +13,7 @@ const UserLoginForm = ({ setToken }) => {
   const [responseData, setResponseData] = useState({});
   const [error, setError] = useState(null);
   const [message, setMessage] = useState(null);
+
   const navigate = useNavigate();
   const [redirectAfterLogin, setRedirectAfterLogin] = useState(false);
   const [messageReceived, setMessageReceived] = useState(false);
@@ -23,7 +24,6 @@ const UserLoginForm = ({ setToken }) => {
   };
 
   const handleRedirect = () => {
-    console.log(message);
     navigate('/');
   };
 
@@ -32,11 +32,13 @@ const UserLoginForm = ({ setToken }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://localhost:7267/api/User/login', formData)
+    
+    axios.post('https://localhost:7267/api/User/login', formData, {
+    })
       .then(response => {
+        sessionStorage.setItem('username', formData.userName);
         console.log(response.data);
-        const my = response.data.message;
-        console.log(my);
+        sessionStorage.setItem('jwtToken', response.data.jwtToken);
         setResponseData(response.data);
         setMessage(response.data.message);
         handleRedirect();
