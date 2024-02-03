@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link ,useNavigate } from 'react-router-dom';
 import {jwtDecode} from 'jwt-decode';
 
-
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
@@ -10,15 +9,13 @@ const Navbar = () => {
   const [roles, setRoles] = useState();
   const navigate = useNavigate();
 
-
   const getTokenRoles = (jwtToken) => {
     const decodedTokenBody = jwtDecode(jwtToken);
     console.log(decodedTokenBody);
     const userRole = decodedTokenBody['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']; 
     setRoles(userRole);
     console.log("My roles "+roles);
-};
-
+  };
 
   useEffect(() => {
     console.log(isLoggedIn);
@@ -37,8 +34,6 @@ const Navbar = () => {
     }
   }, [navigate]);
 
-
-  
   const handleLogout = () => {
     sessionStorage.removeItem('username');
     sessionStorage.removeItem('jwtToken');
@@ -48,20 +43,31 @@ const Navbar = () => {
     navigate("/");
     window.location.reload();
   };
-
   const verifyIsModerator = roles => {
-    if (!roles || roles.length === 0) {
+    if (roles === undefined) {
       return false; 
     }
+
+    if(typeof roles === 'string') {
+      return false;
+    }
+
     const moderatorRole = roles.find(role => role === 'Moderator');
+    
     return moderatorRole !== undefined;
   };
 
-  const verifyIsAdmin= roles => {
-    if (!roles || roles.length === 0) {
+  const verifyIsAdmin = roles => {
+    if (roles === undefined) {
       return false; 
     }
+
+    if(typeof roles === 'string') {
+      return false;
+    }
+
     const adminRole = roles.find(role => role === 'Admin');
+    
     return adminRole !== undefined;
   };
 
