@@ -24,7 +24,6 @@ const RegisterPage = () => {
     e.preventDefault();
     axios.post('https://localhost:7267/api/User/register', formData)
     .then(response => {
-      console.log(response.data);
       setRegistered(true);
 
     })

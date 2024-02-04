@@ -18,13 +18,11 @@ const ForgottPasswordForm = () => {
 
     var myEmail= formData.email;
     const encodedEmail = encodeURIComponent(myEmail);
-    console.log(encodedEmail);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post(`https://localhost:7267/api/User/forgot-password?email=${encodedEmail}`, formData)
     .then(response => {
-      console.log(response.data);
       setMessage(response.data);
       setSubmitted(true);
 

@@ -37,7 +37,6 @@ const UserLoginForm = ({ setToken }) => {
     })
       .then(response => {
         sessionStorage.setItem('username', formData.userName);
-        console.log(response.data);
         sessionStorage.setItem('jwtToken', response.data.jwtToken);
         setResponseData(response.data);
         setMessage(response.data.message);
@@ -46,10 +45,8 @@ const UserLoginForm = ({ setToken }) => {
       .catch(error => {
         console.error('Error during login:', error);
         if (error.response && error.response.data) {
-          console.log('Server response:', error.response.data);
           setError(error.response.data);
         } else {
-          console.log('An error occurred:', error.message);
           setError('An error occurred. Please try again later.');
         }
       });

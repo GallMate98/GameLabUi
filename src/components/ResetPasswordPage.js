@@ -40,7 +40,6 @@ const ResetPasswordPage = () => {
 
           const response = await axios.post(`https://localhost:7267/api/User/reset-password?token=${encodedToken}`, formData);
           const data = response.data;
-           console.log(data);
           setMessage(data);
         } catch (error) {
 

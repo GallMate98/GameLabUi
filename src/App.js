@@ -5,12 +5,12 @@ import ForgottPasswordForm from './components/ForgottPasswordForm';
 import Navbar from './components/Navbar';
 import PrivateRoute from './components/PrivateRoute';
 import { useState } from 'react';
-import Dashboard from './components/Dashboard';
 import HomePage from './components/HomePage';
 import VerifyEmail from './components/VerifyEmail';
 import ResetPasswordPage  from './components/ResetPasswordPage';
 import MyData from './components/MyData';
 import GamesPage from './components/GamesPage';
+import LobbyPage from './components/LobbyPage';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -29,6 +29,7 @@ function App() {
             <Route path="/my-data" element={<MyData />} />
             <Route path="/verify" element={<VerifyEmail/>} />
             <Route path="/games" element={<GamesPage/>}/>
+            <Route path='/lobbies/:gameUrl' element={<LobbyPage/>}/>
         </Routes>
        </div>
       </div>

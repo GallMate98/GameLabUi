@@ -13,7 +13,6 @@ export default function GamesPage() {
           axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem('jwtToken')}`;
           const response = await axios.get('https://localhost:7267/api/Game/getGames');
           setGamesData(response.data);
-          console.log(response.data);
         } catch (error) {
           console.error('Error fetching data:', error);
         }

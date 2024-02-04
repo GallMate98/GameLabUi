@@ -10,7 +10,6 @@ const HomePage = () => {
   const CheckIsLogged = () => {
 
     const userNameSession = sessionStorage.getItem('username');
-    console.log(userNameSession);
 
     if(userNameSession != '' || userNameSession != null)
     {
@@ -27,7 +26,6 @@ const HomePage = () => {
   
   useEffect(()=>{
      CheckIsLogged();
-    console.log(sessionStorage.getItem('username'));
   },[]) 
 
 

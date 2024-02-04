@@ -11,14 +11,11 @@ const Navbar = () => {
 
   const getTokenRoles = (jwtToken) => {
     const decodedTokenBody = jwtDecode(jwtToken);
-    console.log(decodedTokenBody);
     const userRole = decodedTokenBody['http://schemas.microsoft.com/ws/2008/06/identity/claims/role']; 
     setRoles(userRole);
-    console.log("My roles "+roles);
   };
 
   useEffect(() => {
-    console.log(isLoggedIn);
     const token = sessionStorage.getItem('jwtToken');
     const user = sessionStorage.getItem('username');
     
@@ -27,7 +24,6 @@ const Navbar = () => {
       setJwtToken(token);
       setIsLoggedIn(true);
       getTokenRoles(token);
-      console.log(verifyIsModerator(roles));
 
     } else {
       setIsLoggedIn(false);

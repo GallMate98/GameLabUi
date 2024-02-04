@@ -10,7 +10,6 @@ const App = () => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${sessionStorage.getItem('jwtToken')}`;
         const response = await axios.get('https://localhost:7267/api/UpdateSettingUser/my-data');
         setUserData(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
