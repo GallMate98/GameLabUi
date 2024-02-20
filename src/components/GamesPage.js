@@ -28,7 +28,7 @@ export default function GamesPage() {
       }
 
     return (
-        <div className='flex justify-center gap-2'>
+        <div className='flex justify-center gap-2 max-h-52'>
         {gamesData.map((game) => (
           <GameCard key={game.id} game={game} />
         ))}

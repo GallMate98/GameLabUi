@@ -11,6 +11,8 @@ import ResetPasswordPage  from './components/ResetPasswordPage';
 import MyData from './components/MyData';
 import GamesPage from './components/GamesPage';
 import LobbyPage from './components/LobbyPage';
+import TicTacToeGamePage from './components/TicTacToeGamePage';
+import NineMensMorrisGame from './components/NineMensMorrisGame';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -19,7 +21,7 @@ function App() {
       <div className=" py-2 justify-center static mb-2">
         <Navbar/>
       </div>
-      <div className=' flex justify-center min-h-screen-100px '>
+      <div className=' flex justify-center' style={{ height: '87vh' }}>
         <Routes>
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<UserLoginForm />} />
@@ -30,8 +32,15 @@ function App() {
             <Route path="/verify" element={<VerifyEmail/>} />
             <Route path="/games" element={<GamesPage/>}/>
             <Route path='/lobbies/:gameUrl' element={<LobbyPage/>}/>
+            <Route path='/:gameUrl/:gameId' element={<TicTacToeGamePage/>}/>
+            <Route path='/:gameUrl/:gameId' element={<NineMensMorrisGame/>}/>
         </Routes>
        </div>
+       <footer className="bg-gray-800 text-white text-center py-4">
+      <div className="container mx-auto">
+        <p>&copy; 2024 My Awesome Website</p>
+      </div>
+    </footer>
       </div>
   );
 }
